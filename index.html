@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>钟广坚 · 个人档案 | Zhong Guangjian</title>
+<meta name="description" content="钟广坚的个人网站：广西民族大学计科生，全栈学徒，AI 折腾爱好者，资深抽卡玩家。项目经历、技能参数、日常任务一览。">
+<meta property="og:title" content="钟广坚 · 个人档案">
+<meta property="og:description" content="计科生 / 全栈学徒 / AI 折腾爱好者 / 资深抽卡玩家">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101435'/%3E%3Cpath d='M32 8l6.2 17.8L56 32l-17.8 6.2L32 56l-6.2-17.8L8 32l17.8-6.2z' fill='%23f5c95c'/%3E%3C/svg%3E">
+<style>
+/* ============ 设计变量 ============ */
+:root{
+  --bg-deep:#080b1f;
+  --bg-card:rgba(20,26,60,.72);
+  --bg-card-solid:#141a3c;
+  --line:rgba(120,140,255,.22);
+  --gold:#f5c95c;
+  --gold-dim:rgba(245,201,92,.35);
+  --cyan:#6ee7f5;
+  --pink:#f28fc4;
+  --purple:#8f7bff;
+  --text:#e8ecff;
+  --text-dim:#9aa3c7;
+  --radius:14px;
+  --font:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --font-num:"Segoe UI","Arial",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg-deep);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+/* 星空画布（纯装饰，加载失败也不影响内容） */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%,rgba(143,123,255,.16),transparent 70%),
+    radial-gradient(ellipse 50% 35% at 85% 25%,rgba(110,231,245,.10),transparent 70%),
+    radial-gradient(ellipse 70% 45% at 50% 100%,rgba(242,143,196,.08),transparent 70%);
+}
+.wrap{position:relative;z-index:1}
+a{color:var(--cyan);text-decoration:none}
+::selection{background:rgba(245,201,92,.35)}
+
+/* ============ 导航 ============ */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,11,31,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  max-width:1080px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1rem;gap:.5rem;
+}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--text);white-space:nowrap}
+.logo .star{color:var(--gold);font-size:1.1rem}
+nav ul{display:flex;list-style:none;gap:.15rem;flex-wrap:wrap;justify-content:flex-end}
+nav a{
+  display:inline-block;padding:.55rem .7rem;min-height:44px;
+  color:var(--text-dim);font-size:.92rem;border-radius:8px;
+  transition:color .2s,background .2s;
+}
+nav a:hover,nav a:focus-visible{color:var(--gold);background:rgba(245,201,92,.08)}
+nav a.active{color:var(--gold)}
+
+/* ============ 通用区块 ============ */
+main{max-width:1080px;margin:0 auto;padding:0 1rem}
+section{padding:3.2rem 0 1rem;scroll-margin-top:4.2rem}
+.sec-title{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:1.5rem;font-weight:800;margin-bottom:.35rem;
+}
+.sec-title .deco{color:var(--gold);letter-spacing:.1em}
+.sec-sub{color:var(--text-dim);font-size:.9rem;margin-bottom:1.6rem}
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:1.3rem;
+  backdrop-filter:blur(6px);
+}
+/* 滚动浮现 */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *{animation:none !important;transition:none !important}
+}
+
+/* ============ Hero ============ */
+.hero{padding:4.2rem 0 3rem;text-align:center;position:relative}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:.85rem;color:var(--gold);
+  border:1px solid var(--gold-dim);border-radius:999px;
+  padding:.3rem 1rem;margin-bottom:1.2rem;
+  background:rgba(245,201,92,.06);
+}
+.hero h1{
+  font-size:clamp(2.2rem,7vw,3.6rem);
+  font-weight:900;letter-spacing:.06em;
+  background:linear-gradient(100deg,#fff 20%,var(--gold) 55%,var(--cyan) 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .en{
+  font-family:var(--font-num);
+  color:var(--text-dim);letter-spacing:.35em;
+  font-size:.85rem;text-transform:uppercase;margin-top:.4rem;
+}
+.typeline{
+  margin:1.1rem auto 0;font-size:clamp(1rem,3.4vw,1.25rem);
+  color:var(--cyan);min-height:1.9em;
+}
+.typeline .cursor{display:inline-block;width:2px;height:1.1em;background:var(--cyan);
+  vertical-align:-0.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1.4rem}
+.hbadge{
+  font-size:.85rem;color:var(--text);
+  border:1px solid var(--line);border-radius:999px;
+  padding:.35rem .95rem;background:rgba(20,26,60,.6);
+}
+.warp-btn{
+  margin-top:2rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  min-height:48px;padding:.6rem 2.2rem;
+  font-size:1rem;font-weight:700;font-family:var(--font);
+  color:#1a1230;cursor:pointer;
+  background:linear-gradient(100deg,var(--gold),#ffe9a8);
+  border:none;border-radius:999px;
+  box-shadow:0 0 22px rgba(245,201,92,.35);
+  transition:transform .15s,box-shadow .2s;
+}
+.warp-btn:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(245,201,92,.55)}
+.warp-btn:active{transform:translateY(1px)}
+.warp-result{
+  margin-top:1rem;min-height:2.6em;font-size:.95rem;color:var(--text-dim);
+  transition:opacity .3s;
+}
+.warp-result .r5{color:var(--gold);font-weight:800;text-shadow:0 0 18px rgba(245,201,92,.6)}
+.warp-result .r4{color:var(--purple);font-weight:700}
+.warp-result .r3{color:var(--cyan)}
+
+/* ============ 角色卡 ============ */
+.profile-grid{display:grid;grid-template-columns:1fr;gap:1.2rem}
+.char-card{position:relative;overflow:hidden}
+.char-card::before{
+  content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;
+  background:radial-gradient(circle,rgba(245,201,92,.18),transparent 70%);
+  pointer-events:none;
+}
+.char-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.char-name{font-size:1.35rem;font-weight:800}
+.char-name small{display:block;font-size:.8rem;color:var(--text-dim);font-weight:400;letter-spacing:.2em}
+.rarity{color:var(--gold);letter-spacing:.2em;font-size:1rem;text-shadow:0 0 12px rgba(245,201,92,.5)}
+.char-stats{list-style:none;margin-top:1.1rem;display:grid;grid-template-columns:1fr;gap:.55rem}
+.char-stats li{
+  display:flex;justify-content:space-between;gap:1rem;
+  border-bottom:1px dashed rgba(120,140,255,.18);padding-bottom:.45rem;font-size:.95rem;
+}
+.char-stats .k{color:var(--text-dim);white-space:nowrap}
+.char-stats .v{text-align:right;color:var(--text)}
+.char-quote{
+  margin-top:1.2rem;padding:.9rem 1rem;
+  border-left:3px solid var(--gold);
+  background:rgba(245,201,92,.06);border-radius:0 8px 8px 0;
+  color:var(--text);font-size:.95rem;
+}
+.trait-cloud{display:flex;flex-wrap:wrap;gap:.5rem}
+.trait{
+  font-size:.9rem;padding:.55rem .95rem;border-radius:10px;
+  border:1px solid var(--line);background:rgba(20,26,60,.6);
+  display:flex;align-items:center;gap:.45rem;
+}
+.trait b{color:var(--cyan);font-weight:700}
+.traits-card h3{font-size:1rem;color:var(--text-dim);margin-bottom:.9rem;font-weight:600}
+
+/* ============ 能力参数 ============ */
+.stats-grid{display:grid;grid-template-columns:1fr;gap:.9rem}
+.stat{padding:1rem 1.2rem}
+.stat-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.5rem}
+.stat-name{font-weight:700;font-size:.98rem}
+.stat-lv{font-family:var(--font-num);color:var(--gold);font-size:.85rem;white-space:nowrap}
+.bar{height:10px;border-radius:99px;background:rgba(120,140,255,.14);overflow:hidden}
+.bar i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+  box-shadow:0 0 10px rgba(110,231,245,.45);
+  transition:width 1.1s cubic-bezier(.22,.9,.35,1);
+}
+.stat.gold .bar i{background:linear-gradient(90deg,#c98f2c,var(--gold));box-shadow:0 0 10px rgba(245,201,92,.5)}
+.stat-note{font-size:.8rem;color:var(--text-dim);margin-top:.4rem}
+
+/* ============ 任务日志（项目） ============ */
+.quests{display:grid;grid-template-columns:1fr;gap:1rem}
+.quest{position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.quest:hover{transform:translateY(-3px);border-color:var(--gold-dim)}
+.quest-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem;flex-wrap:wrap}
+.q-rank{
+  font-weight:900;font-size:.8rem;letter-spacing:.08em;
+  padding:.2rem .65rem;border-radius:6px;white-space:nowrap;
+}
+.rank-ssr{color:#2a1a00;background:linear-gradient(100deg,var(--gold),#ffe9a8)}
+.rank-sr{color:#1a1040;background:linear-gradient(100deg,#b7a4ff,#8f7bff)}
+.rank-r{color:#03303a;background:linear-gradient(100deg,#8fe9f5,#5cc8dc)}
+.q-title{font-weight:800;font-size:1.05rem}
+.q-desc{color:var(--text-dim);font-size:.93rem}
+.q-tech{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;list-style:none}
+.q-tech li{
+  font-size:.78rem;color:var(--cyan);
+  border:1px solid rgba(110,231,245,.3);border-radius:6px;padding:.12rem .55rem;
+}
+.q-status{
+  margin-top:.8rem;font-size:.82rem;color:var(--gold);
+  display:flex;align-items:center;gap:.4rem;
+}
+
+/* ============ 履历（时间线） ============ */
+.timeline{position:relative;padding-left:1.4rem;list-style:none}
+.timeline::before{
+  content:"";position:absolute;left:.35rem;top:.4rem;bottom:.4rem;width:2px;
+  background:linear-gradient(180deg,var(--gold),var(--purple),transparent);
+}
+.timeline li{position:relative;padding:0 0 1.5rem .8rem}
+.timeline li::before{
+  content:"";position:absolute;left:-1.32rem;top:.5em;width:.7rem;height:.7rem;
+  background:var(--gold);border-radius:50%;
+  box-shadow:0 0 10px rgba(245,201,92,.7);
+}
+.tl-time{font-family:var(--font-num);font-size:.8rem;color:var(--text-dim);letter-spacing:.08em}
+.tl-title{font-weight:700;font-size:1.02rem;margin:.1rem 0 .2rem}
+.tl-desc{color:var(--text-dim);font-size:.92rem}
+
+/* ============ 装备栏 ============ */
+.gear{display:flex;flex-wrap:wrap;gap:.55rem;list-style:none}
+.gear li{
+  display:flex;align-items:center;gap:.4rem;
+  padding:.5rem .9rem;border-radius:10px;font-size:.9rem;
+  border:1px solid var(--line);background:rgba(20,26,60,.6);
+  transition:border-color .2s,transform .15s;
+}
+.gear li:hover{border-color:var(--gold-dim);transform:translateY(-2px)}
+.gear .ico{font-size:1.05rem}
+.gear .lv{font-family:var(--font-num);font-size:.72rem;color:var(--gold)}
+
+/* ============ 日常任务（生活） ============ */
+.daily{display:grid;grid-template-columns:1fr;gap:1rem}
+.daily-card h3{font-size:1.05rem;font-weight:800;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.daily-card p{color:var(--text-dim);font-size:.93rem}
+.daily-card .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem;list-style:none}
+.daily-card .tags li{font-size:.78rem;border:1px solid var(--line);border-radius:6px;padding:.12rem .55rem;color:var(--text)}
+
+/* ============ 成就 ============ */
+.achievements{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.8rem;list-style:none}
+.achievements li{
+  text-align:center;padding:1rem .6rem;border-radius:var(--radius);
+  border:1px solid var(--line);background:var(--bg-card);
+  transition:transform .18s,border-color .18s;
+}
+.achievements li:hover{transform:translateY(-3px) scale(1.02);border-color:var(--gold-dim)}
+.achievements .a-ico{font-size:1.7rem;display:block;margin-bottom:.35rem}
+.achievements .a-name{font-size:.88rem;font-weight:700;display:block}
+.achievements .a-desc{font-size:.72rem;color:var(--text-dim);display:block;margin-top:.2rem}
+
+/* ============ 页脚 ============ */
+footer{
+  margin-top:3.5rem;padding:2.2rem 1rem 2.6rem;text-align:center;
+  border-top:1px solid var(--line);color:var(--text-dim);font-size:.85rem;
+}
+footer .sig{color:var(--gold);margin-bottom:.4rem;letter-spacing:.15em}
+
+/* ============ 桌面端布局 ============ */
+@media (min-width:720px){
+  .profile-grid{grid-template-columns:1.15fr .85fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .quests{grid-template-columns:1fr 1fr}
+  .daily{grid-template-columns:1fr 1fr}
+  .char-stats{grid-template-columns:1fr}
+}
+@media (min-width:1020px){
+  .quests{grid-template-columns:1fr 1fr}
+  .daily{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="nebula" aria-hidden="true"></div>
+
+<div class="wrap">
+<header>
+  <div class="nav">
+    <span class="logo"><span class="star" aria-hidden="true">✦</span>钟广坚 · 档案终端</span>
+    <nav aria-label="页面导航">
+      <ul>
+        <li><a href="#profile">档案</a></li>
+        <li><a href="#stats">参数</a></li>
+        <li><a href="#quests">任务</a></li>
+        <li><a href="#history">履历</a></li>
+        <li><a href="#daily">日常</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top" aria-label="首屏">
+    <span class="hero-tag"><span aria-hidden="true">✦</span> 欢迎来到我的角色面板 <span aria-hidden="true">✦</span></span>
+    <h1>钟广坚</h1>
+    <p class="en">Zhong Guangjian</p>
+    <p class="typeline"><span id="typed">广西民族大学 · 计算机科学与技术 · 全栈学徒</span><span class="cursor" aria-hidden="true"></span></p>
+    <div class="hero-badges">
+      <span class="hbadge">Spring Boot 后端</span>
+      <span class="hbadge">Vue 前端</span>
+      <span class="hbadge">AI 折腾爱好者</span>
+      <span class="hbadge">Python 自动化</span>
+      <span class="hbadge">资深抽卡玩家</span>
+      <span class="hbadge">专升本战士</span>
+      <span class="hbadge">小说连载中</span>
+    </div>
+    <button class="warp-btn" id="warpBtn" type="button">
+      <span aria-hidden="true">✦</span> 跃迁抽一发 <span aria-hidden="true">✦</span>
+    </button>
+    <p class="warp-result" id="warpResult" aria-live="polite">点击跃迁，随机掉落一条人生语录</p>
+  </section>
+
+  <!-- ===== 角色档案 ===== -->
+  <section id="profile" aria-labelledby="profile-title">
+    <h2 class="sec-title" id="profile-title"><span class="deco" aria-hidden="true">✦✦</span>角色档案<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Character Profile · 基础属性一览</p>
+    <div class="profile-grid">
+      <article class="card char-card reveal">
+        <div class="char-head">
+          <div class="char-name">钟广坚 <small>ZHONG GUANGJIAN</small></div>
+          <div class="rarity" title="稀有度">★★★★★</div>
+        </div>
+        <ul class="char-stats">
+          <li><span class="k">命途</span><span class="v">计算机科学与技术</span></li>
+          <li><span class="k">出身</span><span class="v">南宁职业技术学院 · 技能大赛老将</span></li>
+          <li><span class="k">阵营</span><span class="v">广西民族大学 · 武鸣校区</span></li>
+          <li><span class="k">班级</span><span class="v">25级计科4班</span></li>
+          <li><span class="k">等级</span><span class="v">Lv.20 · 大二在读（专升本）</span></li>
+          <li><span class="k">小队</span><span class="v">第31组（三人组队通关答辩）</span></li>
+          <li><span class="k">元素属性</span><span class="v">全栈 · 虚实双修</span></li>
+        </ul>
+        <blockquote class="char-quote">"既能写代码，也能写故事；既爱折腾，也守得住细节。"</blockquote>
+      </article>
+      <aside class="card traits-card reveal" aria-label="性格特质">
+        <h3>性格词条 · Traits</h3>
+        <div class="trait-cloud">
+          <span class="trait"><b>好奇心</b>满级</span>
+          <span class="trait"><b>动手力</b>拉满</span>
+          <span class="trait"><b>务实</b>实习材料归档一丝不苟</span>
+          <span class="trait"><b>浪漫</b>在用 AI 写小说</span>
+          <span class="trait"><b>均衡</b>正事与爱好全都要</span>
+          <span class="trait"><b>肯下笨功夫</b>打字都在偷偷练</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== 能力参数 ===== -->
+  <section id="stats" aria-labelledby="stats-title">
+    <h2 class="sec-title" id="stats-title"><span class="deco" aria-hidden="true">✦✦</span>能力参数<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Ability Stats · 持续升级中，版本以实际表现为准</p>
+    <div class="stats-grid">
+      <div class="card stat reveal"><div class="stat-top"><span class="stat-name">Java / Spring Boot</span><span class="stat-lv">Lv.85</span></div><div class="bar"><i data-w="85"></i></div><p class="stat-note">主力输出：独立搭过后端全套，外键级联删除闭着眼都能排</p></div>
+      <div class="card stat reveal"><div class="stat-top"><span class="stat-name">Vue / 前端工程</span><span class="stat-lv">Lv.80</span></div><div class="bar"><i data-w="80"></i></div><p class="stat-note">Element Plus + Pinia + Vite，前端副本常驻选手</p></div>
+      <div class="card stat reveal"><div class="stat-top"><span class="stat-name">MySQL / 数据库</span><span class="stat-lv">Lv.78</span></div><div class="bar"><i data-w="78"></i></div><p class="stat-note">表结构设计、索引、事务都点过，改表必写 ALTER</p></div>
+      <div class="card stat reveal"><div class="stat-top"><span class="stat-name">AI 工具链</span><span class="stat-lv">Lv.82</span></div><div class="bar"><i data-w="82"></i></div><p class="stat-note">Ollama / LM Studio / 各类 Agent，本地模型折腾狂魔</p></div>
+      <div class="card stat reveal"><div class="stat-top"><span class="stat-name">Python / 自动化</span><span class="stat-lv">Lv.76</span></div><div class="bar"><i data-w="76"></i></div><p class="stat-note">用 OpenCV + Tkinter 锻造过游戏日常 Bot，图像识别与脚本双修</p></div>
+      <div class="card stat reveal"><div class="stat-top"><span class="stat-name">Git / 工程素养</span><span class="stat-lv">Lv.75</span></div><div class="bar"><i data-w="75"></i></div><p class="stat-note">版本管理、文档沉淀，团队协作不掉链子</p></div>
+      <div class="card stat gold reveal"><div class="stat-top"><span class="stat-name">创意写作</span><span class="stat-lv">Lv.68</span></div><div class="bar"><i data-w="68"></i></div><p class="stat-note">AI 协同创作实验进行中，长篇连载中</p></div>
+      <div class="card stat gold reveal"><div class="stat-top"><span class="stat-name">抽卡运气</span><span class="stat-lv">Lv.??</span></div><div class="bar"><i data-w="32"></i></div><p class="stat-note">玄学属性，波动极大，请以当期卡池实际为准</p></div>
+    </div>
+  </section>
+
+  <!-- ===== 任务日志（项目） ===== -->
+  <section id="quests" aria-labelledby="quests-title">
+    <h2 class="sec-title" id="quests-title"><span class="deco" aria-hidden="true">✦✦</span>任务日志 · 项目经历<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Quest Log · 已通关与进行中的主线任务</p>
+    <div class="quests">
+      <article class="card quest reveal">
+        <div class="quest-head"><span class="q-rank rank-ssr">SSR</span><span class="q-title">校园二手交易平台「SchoolFair」</span></div>
+        <p class="q-desc">三人小队主线任务：覆盖发布、交易、评论树、信用积分的完整校园二手交易闭环，从需求到答辩全流程通关。</p>
+        <ul class="q-tech"><li>Spring Boot 3</li><li>Vue 3 + Pinia</li><li>MySQL</li><li>MyBatis</li><li>JWT</li></ul>
+        <p class="q-status"><span aria-hidden="true">✔</span> 已通关 · 完成毕业答辩与实训报告</p>
+      </article>
+      <article class="card quest reveal">
+        <div class="quest-head"><span class="q-rank rank-sr">SR</span><span class="q-title">鸣潮自动日常任务 Bot</span></div>
+        <p class="q-desc">为了偷懒而锻造的自动化神器：OpenCV 图像识别 + OCR + 键鼠控制，自动领奖励、刷体力，还配了 Tkinter 图形界面。用热爱驱动学习。</p>
+        <ul class="q-tech"><li>Python 3</li><li>OpenCV</li><li>pyautogui</li><li>pytesseract</li><li>Tkinter</li></ul>
+        <p class="q-status"><span aria-hidden="true">▶</span> 进行中 · 架构已搭，策略库扩展中</p>
+      </article>
+      <article class="card quest reveal">
+        <div class="quest-head"><span class="q-rank rank-sr">SR</span><span class="q-title">JavaWeb 课程设计</span></div>
+        <p class="q-desc">纯 Java Web 副本：Servlet + JSP + JDBC 手搓登录注册系统，PBKDF2 密码加密与 SQL 注入防护全副武装。</p>
+        <ul class="q-tech"><li>Servlet</li><li>JSP</li><li>JDBC</li><li>Tomcat</li><li>PBKDF2</li></ul>
+        <p class="q-status"><span aria-hidden="true">✔</span> 已通关 · 21 个文件从零手搓</p>
+      </article>
+      <article class="card quest reveal">
+        <div class="quest-head"><span class="q-rank rank-sr">SR</span><span class="q-title">AI 长篇小说《黄昏方舟》</span></div>
+        <p class="q-desc">AI 协同创作实验：人负责世界观与灵魂，AI 负责产能与细节，探索人机合写的边界。连载中，已更新两章。</p>
+        <ul class="q-tech"><li>AI 写作工作流</li><li>世界观设定</li><li>章节连载</li></ul>
+        <p class="q-status"><span aria-hidden="true">▶</span> 进行中 · 第二章已更新</p>
+      </article>
+      <article class="card quest reveal">
+        <div class="quest-head"><span class="q-rank rank-r">R</span><span class="q-title">「犀牛付」企业宣传网站</span></div>
+        <p class="q-desc">DIV + CSS 原生手艺副本：从版式设计到页面实现的企业宣传站，配套完整设计文档，前端基本功的起点。</p>
+        <ul class="q-tech"><li>HTML</li><li>CSS</li><li>版式设计</li></ul>
+        <p class="q-status"><span aria-hidden="true">✔</span> 已通关 · 设计文档齐全</p>
+      </article>
+      <article class="card quest reveal">
+        <div class="quest-head"><span class="q-rank rank-r">R</span><span class="q-title">个人知识库系统</span></div>
+        <p class="q-desc">六分区结构化知识基地：学习笔记、工作备忘、项目文档、参考资料、资源收藏，周报与会议模板开箱即用，让每一份经验都不烂尾。</p>
+        <ul class="q-tech"><li>知识管理</li><li>Markdown</li><li>Obsidian</li></ul>
+        <p class="q-status"><span aria-hidden="true">▶</span> 长期运营中</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 履历 ===== -->
+  <section id="history" aria-labelledby="history-title">
+    <h2 class="sec-title" id="history-title"><span class="deco" aria-hidden="true">✦✦</span>冒险履历<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Adventure History · 主线剧情进度</p>
+    <div class="card reveal">
+      <ol class="timeline">
+        <li>
+          <span class="tl-time">2022</span>
+          <p class="tl-title">初始据点 · 南宁职业技术学院</p>
+          <p class="tl-desc">主线剧情第一章：在这里打下编程底子，确定走计算机这条路。</p>
+        </li>
+        <li>
+          <span class="tl-time">2024</span>
+          <p class="tl-title">广西职业院校技能大赛 · 备赛组</p>
+          <p class="tl-desc">入选备赛组征战区赛，实战经验大幅+1，还拿到了德养积分加分。</p>
+        </li>
+        <li>
+          <span class="tl-time">2025.09</span>
+          <p class="tl-title">通关「专升本」副本 → 广西民族大学</p>
+          <p class="tl-desc">成功升本，进入计算机科学与技术专业，解锁新地图武鸣校区。</p>
+        </li>
+        <li>
+          <span class="tl-time">大一下学期</span>
+          <p class="tl-title">组队完成校园二手交易平台</p>
+          <p class="tl-desc">第31组三人小队，Spring Boot + Vue + MySQL 全栈实战，顺利通过答辩。</p>
+        </li>
+        <li>
+          <span class="tl-time">进行中</span>
+          <p class="tl-title">考证狂潮 · 华为认证 + 实操考核</p>
+          <p class="tl-desc">网络赛道四大模块（数通/安全/无线/数据中心）同步修炼，剑指 HCIP-Datacom；信息技术基础实操题库也在刷。</p>
+        </li>
+        <li>
+          <span class="tl-time">进行中</span>
+          <p class="tl-title">岗位实习 · 材料归档</p>
+          <p class="tl-desc">三方协议、周报月报、实习报告全部规范归档，职业素养拉满。</p>
+        </li>
+        <li>
+          <span class="tl-time">未来</span>
+          <p class="tl-title">下一站：全栈工程师 / AI 应用方向</p>
+          <p class="tl-desc">主线目标：把项目作品与技术博客攒成自己的作品集。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 装备栏 ===== -->
+  <section id="gear" aria-labelledby="gear-title">
+    <h2 class="sec-title" id="gear-title"><span class="deco" aria-hidden="true">✦✦</span>装备栏<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Equipment · 常用武器与法宝</p>
+    <div class="card reveal">
+      <ul class="gear">
+        <li><span class="ico" aria-hidden="true">🛠</span>IntelliJ IDEA <span class="lv">主武器</span></li>
+        <li><span class="ico" aria-hidden="true">📝</span>VS Code</li>
+        <li><span class="ico" aria-hidden="true">🐱</span>Tomcat</li>
+        <li><span class="ico" aria-hidden="true">📦</span>Maven</li>
+        <li><span class="ico" aria-hidden="true">🗄</span>Navicat / HeidiSQL</li>
+        <li><span class="ico" aria-hidden="true">🔀</span>Git</li>
+        <li><span class="ico" aria-hidden="true">🤖</span>Ollama</li>
+        <li><span class="ico" aria-hidden="true">🧠</span>LM Studio</li>
+        <li><span class="ico" aria-hidden="true">📓</span>Obsidian</li>
+        <li><span class="ico" aria-hidden="true">🐍</span>Python</li>
+        <li><span class="ico" aria-hidden="true">👁</span>OpenCV <span class="lv">Bot 核心</span></li>
+        <li><span class="ico" aria-hidden="true">💨</span>Node.js</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 日常任务（生活） ===== -->
+  <section id="daily" aria-labelledby="daily-title">
+    <h2 class="sec-title" id="daily-title"><span class="deco" aria-hidden="true">✦✦</span>日常任务 · 生活副本<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Daily Quests · 肝正事之余，也要好好生活</p>
+    <div class="daily">
+      <article class="card daily-card reveal">
+        <h3><span aria-hidden="true">🎮</span>游戏 · 多修玩家</h3>
+        <p>枪法、操作、剧情、抽卡全都要——FPS 与二次元两手抓，游戏库常年热气腾腾。</p>
+        <ul class="tags"><li>CS2</li><li>PUBG</li><li>崩坏：星穹铁道</li><li>鸣潮</li><li>完美世界</li><li>游戏自动化</li></ul>
+      </article>
+      <article class="card daily-card reveal">
+        <h3><span aria-hidden="true">✍️</span>创作 · AI 写手</h3>
+        <p>白天调 Bug，晚上调剧情。用 AI 当副驾写长篇，认真探索人机协同创作的正确姿势。</p>
+        <ul class="tags"><li>《黄昏方舟》连载中</li><li>世界观构建</li><li>设定集整理</li></ul>
+      </article>
+      <article class="card daily-card reveal">
+        <h3><span aria-hidden="true">🤖</span>折腾 · 工具控</h3>
+        <p>新模型、新 Agent、新玩法第一时间上手，本地跑大模型是日常，把 AI 榨干是信仰。</p>
+        <ul class="tags"><li>本地大模型</li><li>AI Agent</li><li>自动化工作流</li></ul>
+      </article>
+      <article class="card daily-card reveal">
+        <h3><span aria-hidden="true">📚</span>修炼 · 笨功夫选手</h3>
+        <p>练打字、背题库、整理知识库，相信慢功夫才是真 buff。考证路上一步一步稳着走。</p>
+        <ul class="tags"><li>HCIP 备考</li><li>打字训练</li><li>知识沉淀</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 成就 ===== -->
+  <section id="achieve" aria-labelledby="achieve-title">
+    <h2 class="sec-title" id="achieve-title"><span class="deco" aria-hidden="true">✦✦</span>成就墙<span class="deco" aria-hidden="true">✦✦</span></h2>
+    <p class="sec-sub">Achievements · 已解锁的勋章</p>
+    <ul class="achievements">
+      <li class="reveal"><span class="a-ico" aria-hidden="true">🎖️</span><span class="a-name">区赛老兵</span><span class="a-desc">广西职业技能大赛备赛组</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">⬆️</span><span class="a-name">专升本通关</span><span class="a-desc">南职院 → 民大计科</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">🏆</span><span class="a-name">团队答辩通关</span><span class="a-desc">三人小队 · 顺利结题</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">🦾</span><span class="a-name">Bot 锻造师</span><span class="a-desc">OpenCV 游戏自动化达成</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">📜</span><span class="a-name">实习归档大师</span><span class="a-desc">三方协议与周报全齐</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">✍️</span><span class="a-name">小说双开</span><span class="a-desc">AI 协同长篇连载中</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">🤖</span><span class="a-name">本地模型驯兽师</span><span class="a-desc">Ollama + LM Studio 双持</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">🎮</span><span class="a-name">四栖玩家</span><span class="a-desc">FPS / 二游 / 端游全修</span></li>
+      <li class="reveal"><span class="a-ico" aria-hidden="true">⌨️</span><span class="a-name">手速修炼中</span><span class="a-desc">打字软件偷偷练级</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p class="sig">✦ 愿代码无 Bug，抽卡不歪 ✦</p>
+  <p>© 2026 钟广坚 · 广西民族大学 计算机科学与技术</p>
+  <p>本站由 QoderWork 协力打造 · 单文件 · 无依赖 · 离线可开</p>
+</footer>
+</div>
+
+<script>
+/* ===== 星空背景（渐进增强，失败不影响内容） ===== */
+(function(){
+  try{
+    var c=document.getElementById('stars');
+    if(!c||!c.getContext)return;
+    var ctx=c.getContext('2d'),stars=[],W=0,H=0;
+    var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function resize(){
+      W=c.width=window.innerWidth;H=c.height=window.innerHeight;
+      var n=Math.min(160,Math.floor(W*H/9000));
+      stars=[];
+      for(var i=0;i<n;i++){
+        stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,
+          a:Math.random()*.6+.2,s:Math.random()*.02+.005,d:Math.random()>.5?1:-1});
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<stars.length;i++){
+        var st=stars[i];
+        if(!reduced){st.a+=st.s*st.d;if(st.a>.85||st.a<.15)st.d=-st.d;}
+        ctx.globalAlpha=Math.max(.1,Math.min(.85,st.a));
+        ctx.fillStyle=i%7===0?'#f5c95c':'#dfe6ff';
+        ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,6.283);ctx.fill();
+      }
+      ctx.globalAlpha=1;
+      if(!reduced)requestAnimationFrame(draw);
+    }
+    resize();draw();
+    window.addEventListener('resize',resize);
+  }catch(e){/* 静默降级 */}
+})();
+
+/* ===== 打字机效果 ===== */
+(function(){
+  var el=document.getElementById('typed');if(!el)return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var text=el.textContent;el.textContent='';var i=0;
+  (function type(){
+    if(i<=text.length){el.textContent=text.slice(0,i);i++;setTimeout(type,80);}
+  })();
+})();
+
+/* ===== 滚动浮现 + 参数条动画 ===== */
+(function(){
+  var revealEls=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    revealEls.forEach(function(e){e.classList.add('on');});
+    document.querySelectorAll('.bar i').forEach(function(b){b.style.width=(b.getAttribute('data-w')||0)+'%';});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add('on');
+        var bar=en.target.querySelector('.bar i');
+        if(bar)bar.style.width=(bar.getAttribute('data-w')||0)+'%';
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:.15});
+  revealEls.forEach(function(e){io.observe(e);});
+})();
+
+/* ===== 导航高亮 ===== */
+(function(){
+  var links=document.querySelectorAll('nav a[href^="#"]');
+  var secs=[];
+  links.forEach(function(a){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t)secs.push({a:a,t:t});
+  });
+  function onScroll(){
+    var pos=window.scrollY+120,cur=null;
+    secs.forEach(function(s){if(s.t.offsetTop<=pos)cur=s;});
+    links.forEach(function(a){a.classList.remove('active');});
+    if(cur)cur.a.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+
+/* ===== 跃迁抽卡彩蛋 ===== */
+(function(){
+  var btn=document.getElementById('warpBtn'),out=document.getElementById('warpResult');
+  if(!btn||!out)return;
+  var pool=[
+    {r:5,t:'「代码如诗，Bug 如影。愿你永远站在编译通过的那一边。」'},
+    {r:5,t:'「五星掉落！今晚的需求一次过，答辩老师全点头。」'},
+    {r:5,t:'「跃迁成功：抽到『全栈之光』——前后端通吃，答辩稳了。」'},
+    {r:4,t:'「四星掉落：抽到『深夜灵感』——小说下一章的伏笔有了。」'},
+    {r:4,t:'「四星掉落：抽到『知识库管理员』——今天的笔记已归档。」'},
+    {r:4,t:'「四星掉落：抽到『一次跑通』——mvn clean install 全程绿灯。」'},
+    {r:4,t:'「四星掉落：抽到『自动化之魂』——鸣潮日常交给 Bot，解放双手去肝别的。」'},
+    {r:3,t:'「三星掉落：抽到『早睡券』——今晚十二点前放下键盘。」'},
+    {r:3,t:'「三星掉落：抽到『摸鱼许可』——去星穹铁道里逛一圈吧。」'},
+    {r:3,t:'「三星掉落：抽到『多喝热水』——程序员也要保重身体。」'},
+    {r:3,t:'「三星掉落：抽到『玄学保底』——下次抽卡垫一刀，必不亏。」'}
+  ];
+  btn.addEventListener('click',function(){
+    var roll=Math.random();
+    var rarity=roll<.12?5:(roll<.4?4:3);
+    var cands=pool.filter(function(p){return p.r===rarity;});
+    var pick=cands[Math.floor(Math.random()*cands.length)];
+    var cls=rarity===5?'r5':(rarity===4?'r4':'r3');
+    var star='★'.repeat(rarity)+'☆'.repeat(5-rarity);
+    out.style.opacity=0;
+    setTimeout(function(){
+      out.innerHTML='<span class="'+cls+'">'+star+'</span> '+pick.t.replace('「','').replace('」','');
+      out.style.opacity=1;
+    },220);
+  });
+})();
+</script>
+</body>
+</html>
