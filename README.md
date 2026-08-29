@@ -2,7 +2,7 @@
 
 > Qiu Feng Sao Luo Ye —— 广西民族大学 · 计算机科学与技术 · 全栈学徒
 >
-> 在线版档案站：[githubzgj.github.io](https://githubzgj.github.io)
+> 在线版档案站：[githubzgj.github.io/zgj-personal-website](https://githubzgj.github.io/zgj-personal-website/)
 
 `Spring Boot 后端` `Vue 前端` `AI 折腾爱好者` `Python 自动化` `资深抽卡玩家` `专升本战士` `小说连载中`
 
